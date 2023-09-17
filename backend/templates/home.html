@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%block body%}
+<div class="container">
+    <div class="row d-flex justify-content-center text-center">
+        <form method="post" action="#">
+            <label for="product"><h3>Enter product name</h3></label><br>
+            <input type="text" id="product" name="product" class="form-control"><br>
+            <div class="btn-group d-flex" role="group">
+                <button type="button" name="options" value="Amazon" class="btn btn-primary">Amazon</button>
+                <button type="button" name="options" value="NewEgg" class="btn btn-warning">NewEgg</button>
+            </div>
+            <div class="mt-1">Scraping from: <br><span id="selected-website">Website not selected</span></div>
+            <input class="btn btn-block btn-secondary mt-2" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+<script>
+    const buttons = document.getElementsByName("options");
+    const selected_tag = document.getElementById("selected-website");
+    Array.from(buttons).forEach(button => button.addEventListener("click", function(event){
+        selected_tag.innerHTML = event.target.value;
+    }));
+</script>
+{%endblock%}
