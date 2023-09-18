@@ -14,23 +14,25 @@
     </div>
 </div>
 <div class="container mt-5">
-    <div class="flex-row d-flex justify-content-between">
-        <div class="flex-col text-center">
-            <button tpye="button" class="btn btn-primary mb-3" disabled>Amazon</button><br>
-            {%for product in amazon_products%}
-            <a class="btn btn-success" href="#" role="button">{{product.product_name}}</a>
-            {%endfor%}
+    <div class="row d-flex justify-content-between">
+        <div class="col-lg-4 text-center">
+            <ul class="list-group">
+                <button tpye="button" class="btn btn-primary mb-3" disabled>Amazon</button><br>
+                {%for product in amazon_products%}
+                <li class="list-group-item"><a class="btn btn-primary" href="#" role="button">{{product.product_name}}</a></li>
+                {%endfor%}
+                <br><button tpye="button" class="btn btn-warning mb-3" disabled>NewEgg</button><br>
+                {%for product in new_egg_products%}
+                <li class="list-group-item"><a class="btn btn-warning" href="#" role="button">{{product.product_name}}</a></li>
+                {%endfor%}
+            </ul>
         </div>
-        <div class="flex-col text-center">
-            <button tpye="button" class="btn btn-warning mb-3" disabled>NewEgg</button><br>
-            {%for product in new_egg_products%}
-            <a class="btn btn-success" href="#" role="button">{{product.product_name}}</a>
-            {%endfor%}
+        <div class="col-lg-8">
+            {%block table%}
+            {%endblock%}
         </div>
     </div>
 </div>
-{%block table%}
-{%endblock%}
 
 <script>
     const buttons = document.getElementsByName("options");

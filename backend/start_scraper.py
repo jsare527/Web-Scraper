@@ -32,5 +32,6 @@ def handle_form_request():
             data_set = json.load(f)
             db.session.add(NewEggProduct(product_name=product, dictionary=data_set))
             db.session.commit()
-
-    return render_template('table.html', dictionary=data_set, product_name=product)
+    new_egg_products = NewEggProduct.query.all()
+    amazon_products = AmazonProduct.query.all()
+    return render_template('table.html', dictionary=data_set, product_name=product, new_egg_products=new_egg_products, amazon_products=amazon_products)
