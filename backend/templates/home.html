@@ -2,18 +2,36 @@
 {%block body%}
 <div class="container">
     <div class="row d-flex justify-content-center text-center">
-        <form method="post" action="#">
+        <form method="post" action="{{url_for('scraper.handle_form_request')}}">
             <label for="product"><h3>Enter product name</h3></label><br>
             <input type="text" id="product" name="product" class="form-control"><br>
             <div class="btn-group d-flex" role="group">
-                <button type="button" name="options" value="Amazon" class="btn btn-primary">Amazon</button>
-                <button type="button" name="options" value="NewEgg" class="btn btn-warning">NewEgg</button>
+                <button type="submit" name="options" value="Amazon" class="btn btn-primary">Amazon</button>
+                <button type="submit" name="options" value="NewEgg" class="btn btn-warning">NewEgg</button>
             </div>
             <div class="mt-1">Scraping from: <br><span id="selected-website">Website not selected</span></div>
-            <input class="btn btn-block btn-secondary mt-2" type="submit" value="Submit">
         </form>
     </div>
 </div>
+<div class="container mt-5">
+    <div class="flex-row d-flex justify-content-between">
+        <div class="flex-col text-center">
+            <button tpye="button" class="btn btn-primary mb-3" disabled>Amazon</button><br>
+            {%for product in amazon_products%}
+            <a class="btn btn-success" href="#" role="button">{{product.product_name}}</a>
+            {%endfor%}
+        </div>
+        <div class="flex-col text-center">
+            <button tpye="button" class="btn btn-warning mb-3" disabled>NewEgg</button><br>
+            {%for product in new_egg_products%}
+            <a class="btn btn-success" href="#" role="button">{{product.product_name}}</a>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{%block table%}
+{%endblock%}
+
 <script>
     const buttons = document.getElementsByName("options");
     const selected_tag = document.getElementById("selected-website");

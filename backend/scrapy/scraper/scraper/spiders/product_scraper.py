@@ -7,7 +7,6 @@ from ..items import GenericItem
 
 class AmazonSpider(scrapy.Spider):
     name = "amazon_spider"
-    items = []
 
     def start_requests(self):
 
@@ -30,8 +29,6 @@ class AmazonSpider(scrapy.Spider):
         yield scrapy.Request(url=url, callback=self.parse, headers=HEADERS)
 
     def parse(self, response):
-        now = datetime.now()
-        current_date = now.strftime("%m/%d")
         sections = response.css("div.a-section")
         for section in sections:
             item = GenericItem()
@@ -65,8 +62,6 @@ class NewEggSpider(scrapy.Spider):
         yield scrapy.Request(url=url, callback=self.parse, meta={"proxy": "http://jeyyjdjc-rotate:zozi8si4to6q@p.webshare.io:80/"}, headers=HEADERS)
 
     def parse(self, response):
-        now = datetime.now()
-        current_date = now.strftime("%m/%d")
         sections = response.css("div.item-cell div.item-container")
         for section in sections:
             item = GenericItem()
